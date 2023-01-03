@@ -1,10 +1,13 @@
 import { FC, useState } from 'react';
-import Chips from './components/Chips';
-import ImageCard from './components/ImageCard';
-import MasonryGrid from './components/MasonryGrid';
 
 // * hooks
 import useAxios from './hooks/useAxios';
+
+// * components
+import Chips from './components/Chips';
+import ImageCard from './components/ImageCard';
+import MasonryGrid from './components/MasonryGrid';
+import TagInput from './components/TagInput';
 
 // * interfaces
 import type { Image } from './interfaces/interfaces';
@@ -45,6 +48,7 @@ const App: FC = () => {
               setTags={setTags}
             />
           ))}
+          <TagInput setTags={setTags} />
       </header>
       <MasonryGrid>
         {images &&
