@@ -56,6 +56,7 @@ const TagInput: FC<TagInputProps> = ({ setTags }) => {
         onChange={changeHandler}
         className={`
             bg-inherit outline-0 focus:w-20
+            transition-all duration-300
             ${expanded ? 'w-20 pr-2' : 'w-0'}
         `}
       />
