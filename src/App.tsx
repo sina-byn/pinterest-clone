@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import Chips from './components/Chips';
 import ImageCard from './components/ImageCard';
 import MasonryGrid from './components/MasonryGrid';
 
@@ -33,6 +34,18 @@ const App: FC = () => {
 
   return (
     <main className='app-container'>
+      <header className='flex flex-wrap items-center gap-x-4 gapy-2 px-4 py-6'>
+        {tags &&
+          tags.map(tag => (
+            <Chips
+              key={tag}
+              type='deletable'
+              title={tag}
+              tags={tags}
+              setTags={setTags}
+            />
+          ))}
+      </header>
       <MasonryGrid>
         {images &&
           images.map(image => <ImageCard key={image.id} image={image} />)}
