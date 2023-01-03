@@ -53,7 +53,9 @@ const ImageCard: FC<ImageCardProps> = ({ image }) => {
           alt={alt_description}
           className={loaded ? '' : 'hidden'}
         />
-        {!loaded && <Blurhash hash={blur_hash} width='100%' height='100%' />}
+        {!loaded && blur_hash && (
+          <Blurhash hash={blur_hash} width='100%' height='100%' />
+        )}
         <Overlay className='flex justify-end text-gray-200 p-3'>
           <ExpandButton image={image} />
         </Overlay>
