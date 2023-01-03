@@ -3,11 +3,15 @@ import { FC, useState } from 'react';
 // * hooks
 import useAxios from './hooks/useAxios';
 
+// * context-provider
+import ModalContextProvider from './context/ModalContextProvider';
+
 // * components
 import Chips from './components/Chips';
 import ImageCard from './components/ImageCard';
 import MasonryGrid from './components/MasonryGrid';
 import TagInput from './components/TagInput';
+import ImageModal from './components/ImageModal';
 
 // * interfaces
 import type { Image } from './interfaces/interfaces';
@@ -48,12 +52,15 @@ const App: FC = () => {
               setTags={setTags}
             />
           ))}
-          <TagInput setTags={setTags} />
+        <TagInput setTags={setTags} />
       </header>
-      <MasonryGrid>
-        {images &&
-          images.map(image => <ImageCard key={image.id} image={image} />)}
-      </MasonryGrid>
+      <ModalContextProvider>
+        <MasonryGrid>
+          {images &&
+            images.map(image => <ImageCard key={image.id} image={image} />)}
+        </MasonryGrid>
+        <ImageModal />
+      </ModalContextProvider>
     </main>
   );
 };
