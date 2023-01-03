@@ -1,4 +1,6 @@
 import { FC, useState } from 'react';
+import ImageCard from './components/ImageCard';
+import MasonryGrid from './components/MasonryGrid';
 
 // * hooks
 import useAxios from './hooks/useAxios';
@@ -19,7 +21,7 @@ const App: FC = () => {
 
   const axios = useAxios<Image[]>();
   axios.get('/search/photos', {
-    onComplete: (data: ApiData) => console.log(data),
+    onComplete: (data: ApiData) => setImages(data.results),
     params: {
       client_id: import.meta.env.VITE_AUTH_KEY,
       query: tags.join(','),
@@ -29,7 +31,14 @@ const App: FC = () => {
     dependencies: [tags],
   });
 
-  return <main className='app-container'></main>;
+  return (
+    <main className='app-container'>
+      <MasonryGrid>
+        {images &&
+          images.map(image => <ImageCard key={image.id} image={image} />)}
+      </MasonryGrid>
+    </main>
+  );
 };
 
 export default App;
