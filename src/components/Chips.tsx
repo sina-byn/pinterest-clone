@@ -22,7 +22,12 @@ const Chips: FC<ChipsProps> = ({
     });
 
   return (
-    <div className='chips flex items-center bg-neutral text-sm text-gray-500 border border-gray-300 rounded-full px-2 pb-0.5'>
+    <div
+      className={`
+        chips flex items-center bg-neutral text-gray-500 border border-gray-300 rounded-full px-2 pb-0.5
+        ${type === 'deletable' ? 'text-sm' : 'text-xs sm:text-sm'}
+      `}
+    >
       {title}
       {type === 'deletable' && tags.length > 1 && (
         <i
