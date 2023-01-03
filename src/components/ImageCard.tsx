@@ -5,6 +5,7 @@ import { Blurhash } from 'react-blurhash';
 
 // * components
 import MasonryItem from './MasonryItem';
+import Overlay from './Overlay';
 
 // * interfaces
 import type { Image } from '../interfaces/interfaces';
@@ -52,6 +53,7 @@ const ImageCard: FC<ImageCardProps> = ({ image }) => {
           className={loaded ? '' : 'hidden'}
         />
         {!loaded && <Blurhash hash={blur_hash} width='100%' height='100%' />}
+        <Overlay className='text-gray-200'>Card Overlay</Overlay>
       </div>
       {description && (
         <p className='description font-medium pt-2 break-words'>
