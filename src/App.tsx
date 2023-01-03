@@ -41,18 +41,21 @@ const App: FC = () => {
 
   return (
     <main className='app-container'>
-      <header className='flex flex-wrap items-center gap-x-4 gapy-2 px-4 py-6'>
-        {tags &&
-          tags.map(tag => (
-            <Chips
-              key={tag}
-              type='deletable'
-              title={tag}
-              tags={tags}
-              setTags={setTags}
-            />
-          ))}
-        <TagInput setTags={setTags} />
+      <header className='flex flex-col px-4 pt-4'>
+        <h1 className='logo text-pinterest text-xl font-medium border-b border-pinterest'>Pinterest Clone</h1>
+        <div className='tags flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 pb-6'>
+          {tags &&
+            tags.map(tag => (
+              <Chips
+                key={tag}
+                type='deletable'
+                title={tag}
+                tags={tags}
+                setTags={setTags}
+              />
+            ))}
+          <TagInput setTags={setTags} />
+        </div>
       </header>
       <ModalContextProvider>
         <MasonryGrid>
