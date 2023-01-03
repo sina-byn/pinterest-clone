@@ -1,4 +1,4 @@
-import { FC, ReactNode, Dispatch, SetStateAction } from 'react';
+import { FC, Dispatch, SetStateAction } from 'react';
 
 // * interfaces
 interface ChipsProps {
