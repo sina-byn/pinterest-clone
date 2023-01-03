@@ -18,12 +18,12 @@ const ImageModal: FC = () => {
   const closeHandler = () => setModalData(prev => ({ ...prev, open: false }));
 
   return open ? (
-    <Modal className='flex flex-col sm:flex-row justify-between rounded-3xl bg-white w-10/12 sm:w-[95%] md:w-3/4 lg:w-1/2 h-[90vh] sm:h-[60vh]'>
-      <div className='img-container flex sm:w-fit sm:max-w-[50%] h-1/2 sm:h-full'>
+    <Modal className='flex flex-col sm:flex-row justify-between rounded-3xl bg-white w-10/12 sm:w-[95%] md:w-3/4 lg:w-1/2 h-[75vh] sm:h-[60vh]'>
+      <div className='img-container sm:w-fit sm:max-w-[50%] max-h-[50%] sm:max-h-full sm:h-full'>
         <img
           src={image}
           alt={alt_description}
-          className='h-full w-full object-contain object-center sm:object-left'
+          className='h-full w-full object-contain object-top sm:object-left'
         />
       </div>
       <div className='image-data flex-1 grid grid-rows-[auto,_1fr,_25px,_auto] gap-4 h-1/2 sm:h-full p-6'>
@@ -31,7 +31,7 @@ const ImageModal: FC = () => {
           <img
             alt={username}
             src={profile_image.large}
-            className='w-16 h-16 rounded-full'
+            className='w-10 h-10 sm:w-14 sm:h-14 rounded-full'
           />
           <div className='user-info grow flex flex-col'>
             <span className='name truncate font-medium'>{name}</span>
@@ -46,10 +46,10 @@ const ImageModal: FC = () => {
           </div>
           <i
             onClick={closeHandler}
-            className='fa-solid fa-close fa-lg hover:text-pinterest cursor-pointer mt-2'
+            className='fa-solid fa-close fa-sm md:fa-lg hover:text-pinterest cursor-pointer mt-2'
           />
         </div>
-        <p className='description h-full overflow-y-auto'>
+        <p className='description h-full overflow-y-auto text-sm sm:text-base'>
           {description || placeholder}
         </p>
         <LikeButton likes={likes} />
