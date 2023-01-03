@@ -5,6 +5,7 @@ import useAxios from './hooks/useAxios';
 
 // * context-provider
 import ModalContextProvider from './context/ModalContextProvider';
+import useScrollToBottom from './hooks/useScrollToBottom';
 
 // * components
 import Chips from './components/Chips';
@@ -27,22 +28,30 @@ const App: FC = () => {
   const [tags, setTags] = useState<string[]>(['tokyo', 'cars']);
   const [page, setPage] = useState<number>(1);
 
+  useScrollToBottom(() => setPage(prev => ++prev));
+
   const axios = useAxios<Image[]>();
   axios.get('/search/photos', {
-    onComplete: (data: ApiData) => setImages(data.results),
+    onComplete: (data: ApiData) => {
+      page === 1
+        ? setImages(data.results)
+        : setImages(prev => prev.concat(data.results));
+    },
     params: {
       client_id: import.meta.env.VITE_AUTH_KEY,
       query: tags.join(','),
       per_page: 30,
       page: page,
     },
-    dependencies: [tags],
+    dependencies: [page, tags],
   });
 
   return (
     <main className='app-container'>
       <header className='flex flex-col px-4 pt-4'>
-        <h1 className='logo text-pinterest text-xl font-medium border-b border-pinterest'>Pinterest Clone</h1>
+        <h1 className='logo text-pinterest text-xl font-medium border-b border-pinterest'>
+          Pinterest Clone
+        </h1>
         <div className='tags flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 pb-6'>
           {tags &&
             tags.map(tag => (
